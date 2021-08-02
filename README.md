@@ -10,7 +10,7 @@ python3 -m service.app customer1.us.ca.sfo
 
 ## Cloning
 ```sh
-git clone <>
+git clone https://github.com/logisettiaparna/router-service.git
 cd router-service
 
 # Install dependencies and setup virtual environment
