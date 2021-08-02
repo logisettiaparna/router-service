@@ -5,8 +5,10 @@ from service.config.app_config import loadConfig
 def isCityExist(kvMapState,city):
     if kvMapState.get(city):
         print(kvMapState.get(city))
-    else:
+    elif kvMapState.get("*"):
         print(kvMapState.get("*"))
+    else:
+        anyCustomer()
 
 def isStateExists(kvMapCountry,state,city):
     if kvMapCountry.get(state):
@@ -16,6 +18,8 @@ def isStateExists(kvMapCountry,state,city):
         #print("here in no state")
         kvMapState = kvMapCountry.get("*")
         isCityExist(kvMapState, city)
+    else:
+        anyCustomer()
 
 def isCountryExists(kvMapCustomer,country,state,city):
     if kvMapCustomer.get(country):
@@ -25,6 +29,11 @@ def isCountryExists(kvMapCustomer,country,state,city):
         #print("here in no country")
         kvMapCountry = kvMapCustomer.get("*")
         isStateExists(kvMapCountry, state, city)
+    else:
+        anyCustomer()
+
+def anyCustomer():
+    print(kvMap.get("*").get("*").get("*").get("*"))
 
 def findRoute(inputStr,kvMap):
     inputSplit=inputStr.split(".")
@@ -33,12 +42,12 @@ def findRoute(inputStr,kvMap):
     state = inputSplit[2]
     city = inputSplit[3]
 
-    #Check if Customer exists....if no customer found, then execute "any" case("*")
+    #Check if Customer exists....if no customer found, then execute "any" case("*") - Same with other keys
     if kvMap.get(customer_id):
         kvMapCustomer = kvMap.get(customer_id)
         isCountryExists(kvMapCustomer, country, state, city)
     else:
-        print(kvMap.get("*").get("*").get("*").get("*"))
+        anyCustomer()
 
 
 
